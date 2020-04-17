@@ -14,7 +14,7 @@ import NewNoteIcon from '../icons/new-note';
 import SearchField from '../search-field';
 import MenuIcon from '../icons/menu';
 import { withoutTags } from '../utils/filter-notes';
-import { createNote, search, toggleNavigation } from '../state/ui/actions';
+import actions from '../state/actions';
 
 import * as S from '../state';
 import * as T from '../types';
@@ -72,13 +72,13 @@ const mapDispatchToProps: S.MapDispatch<DispatchProps, OwnProps> = (
   { noteBucket }
 ) => ({
   onNewNote: (content: string) => {
-    dispatch(createNote());
-    dispatch(search(''));
+    dispatch(actions.ui.createNote());
+    dispatch(actions.ui.search(''));
     dispatch(newNote({ noteBucket, content }));
     analytics.tracks.recordEvent('list_note_created');
   },
   toggleNavigation: () => {
-    dispatch(toggleNavigation());
+    dispatch(actions.ui.toggleNavigation());
   },
 });
 

@@ -8,7 +8,7 @@ import SettingsGroup, { Item } from '../../settings-group';
 import ToggleGroup from '../../toggle-settings-group';
 
 import appState from '../../../flux/app-state';
-import * as settingsActions from '../../../state/settings/actions';
+import actions from '../../../state/actions';
 import { loadTags } from '../../../state/domain/tags';
 
 const DisplayPanel = props => {
@@ -161,7 +161,7 @@ const mapStateToProps = ({ settings }) => {
 const mapDispatchToProps = dispatch => {
   const { loadNotes } = appState.actionCreators;
   return {
-    actions: bindActionCreators(settingsActions, dispatch),
+    actions: bindActionCreators(actions.settings, dispatch),
     loadNotes: noteBucket => dispatch(loadNotes({ noteBucket })),
     loadTags: () => dispatch(loadTags()),
   };
